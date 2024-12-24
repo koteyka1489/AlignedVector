@@ -1,6 +1,7 @@
+#include <cstdio>
 #include <cstdlib>
 #include <assert.h>
-
+#include <memory>
 
 
 template <size_t Alignment>
@@ -17,5 +18,8 @@ public:
         return _aligned_malloc(Size, Alignment); }
 
     static inline void DeAllocate(void* Ptr) noexcept {
-        _aligned_free(Ptr); }
+        if (Ptr == nullptr) return;
+        _aligned_free(Ptr);
+        Ptr = nullptr;
+    }
 };
