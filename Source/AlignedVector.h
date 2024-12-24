@@ -10,7 +10,7 @@ public:
         DataPtr = static_cast<T*>(AllocatorA.Allocate(Capacity * sizeof(T)));
         if (!DataPtr)
         {
-            assert(false, "BadAllocation");        
+            assert(false, "BadAllocation");
         }
         *DataPtr = data;
         ++Size;
@@ -49,22 +49,15 @@ public:
         Capacity = NewCapacity;
     }
 
-
     T& operator[](size_t index)
     {
-        if (index >= Size)
-        {
-            assert(false, "Index out of range");
-        }
+        assert(index < Size);
         return DataPtr[index];
     }
 
     const T& operator[](size_t index) const
     {
-        if (index >= Size)
-        {
-            assert(false, "Index out of range");
-        }
+        assert(index < Size);
         return DataPtr[index];
     }
 
