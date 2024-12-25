@@ -61,6 +61,9 @@ public:
         return DataPtr[index];
     }
 
+    T* begin() { return DataPtr; }
+    T* end() { return DataPtr + Size; }
+
 private:
     T* DataPtr = nullptr;
     size_t Size = 0;
