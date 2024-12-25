@@ -5,6 +5,12 @@ set(PROJECT_NAME AlignedVector)
 project(${PROJECT_NAME} VERSION 1.0.0)  
 message ("----------------Project File Generation for ${PROJECT_NAME}----------------- ")  
 
+if(MSVC)  
+    add_compile_options(/O2 /arch:AVX2)  
+else()  
+    add_compile_options(-O3 -march=native)  
+endif() 
+
 
 # common options  
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)  

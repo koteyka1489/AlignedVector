@@ -24,7 +24,7 @@ public:
     AVector(const AVector&&) {}
     AVector& operator=(const AVector&&) {}
 
-    void Add(T data)
+    inline void Add(T data) noexcept
     {
         if (Size == Capacity)
         {
@@ -35,7 +35,7 @@ public:
         ++Size;
     }
 
-    void Reserve(size_t NewCapacity)
+    void Reserve(size_t NewCapacity) noexcept
     {
         if (NewCapacity <= Capacity) return;
 
@@ -68,7 +68,7 @@ public:
     size_t GetSize() { return Size; }
 
 private:
-    T* DataPtr = nullptr;
+    alignas(16) T* DataPtr = nullptr;
     size_t Size = 0;
     size_t Capacity = 2;
     static constexpr size_t Alignment = 16;
