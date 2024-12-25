@@ -15,6 +15,7 @@ public:
         *DataPtr = data;
         ++Size;
     }
+    ~AVector() { AllocatorA.DeAllocate(DataPtr); }
     AVector(std::initializer_list<T> list) {}
 
     AVector(const AVector&) = delete;
@@ -63,6 +64,8 @@ public:
 
     T* begin() { return DataPtr; }
     T* end() { return DataPtr + Size; }
+
+    size_t GetSize() { return Size; }
 
 private:
     T* DataPtr = nullptr;

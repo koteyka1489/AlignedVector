@@ -31,9 +31,11 @@ add_executable(tests Test/Test.cpp)
 # find  
 list(APPEND CMAKE_PREFIX_PATH "C:/Users/fatba/vcpkg/installed/x64-windows")  
 find_package(GTest CONFIG REQUIRED)   
+find_package(benchmark CONFIG REQUIRED)
 
 # link libs  
 target_link_libraries(tests PRIVATE GTest::gtest GTest::gtest_main)  
-target_include_directories(tests PRIVATE ${CMAKE_SOURCE_DIR}/Source)  
+target_include_directories(tests PRIVATE ${CMAKE_SOURCE_DIR}/Source) 
+target_link_libraries(tests PRIVATE benchmark::benchmark benchmark::benchmark_main) 
  
 message ("-------Project Files Generated--------")  
